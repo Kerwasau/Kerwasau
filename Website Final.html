@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dochstetter Kerwabuam Korn-Mischer</title>
+    <style>
+        body {
+            background-color: #001f3f; /* Dunkles Blau */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 4em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 2em;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1.2em;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dochstetter Kerwabuam</h1>
+    <h2>Kornrechner</h2>
+    <p>Gib die gewünschte Menge in Litern ein:</p>
+    <input type="number" id="literInput" placeholder="Liter" min="1">
+    <button onclick="calculate()">Berechnen</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            let liter = document.getElementById('literInput').value;
+
+            if (liter > 0) {
+                let korn = liter * (0.813 / 3.723); // Korn für 3.723 Liter
+                let wasser = liter * (2.910 / 3.723); // Wasser für 3.723 Liter
+                let krumeltee = liter * (364 / 3.723); // Krümeleistee für 3.723 Liter
+
+                // Formatierung mit Komma statt Punkt
+                document.getElementById('result').innerHTML = 
+                `<p>Für ${liter.replace('.', ',')} Liter brauchst du:</p>
+                 <p>${korn.toFixed(2).replace('.', ',')} Liter Korn</p>
+                 <p>${wasser.toFixed(2).replace('.', ',')} Liter Wasser</p>
+                 <p>${krumeltee.toFixed(2).replace('.', ',')} Gramm Krümeleistee</p>`;
+            } else {
+                document.getElementById('result').innerHTML = "<p>Bitte gib eine gültige Literzahl ein.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
